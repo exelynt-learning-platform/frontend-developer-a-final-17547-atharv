@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, from, map, of, switchMap } from 'rxjs';
 import { EmployeeService } from '../../services/employee-service';
 import { APP_MESSAGES } from '../../constants';
+import { errorMessage } from '../../helpers/api-error';
 import { EmployeeActions } from './employee.actions';
 
 /**
@@ -25,7 +26,7 @@ export class EmployeeEffects {
           catchError((error) =>
             of(
               EmployeeActions.loadEmployeesFailure({
-                error: error?.message ?? APP_MESSAGES.employee.loadFailed,
+                error: errorMessage(error, APP_MESSAGES.employee.loadFailed),
               }),
             ),
           ),
@@ -52,7 +53,7 @@ export class EmployeeEffects {
           catchError((error) =>
             of(
               EmployeeActions.searchEmployeeByIdFailure({
-                error: error?.message ?? APP_MESSAGES.employee.loadFailed,
+                error: errorMessage(error, APP_MESSAGES.employee.loadFailed),
               }),
             ),
           ),
@@ -79,7 +80,7 @@ export class EmployeeEffects {
           catchError((error) =>
             of(
               EmployeeActions.addEmployeeFailure({
-                error: error?.message ?? APP_MESSAGES.employee.loadFailed,
+                error: errorMessage(error, APP_MESSAGES.employee.loadFailed),
               }),
             ),
           ),
@@ -106,7 +107,7 @@ export class EmployeeEffects {
           catchError((error) =>
             of(
               EmployeeActions.updateEmployeeFailure({
-                error: error?.message ?? APP_MESSAGES.employee.loadFailed,
+                error: errorMessage(error, APP_MESSAGES.employee.loadFailed),
               }),
             ),
           ),
@@ -133,7 +134,7 @@ export class EmployeeEffects {
           catchError((error) =>
             of(
               EmployeeActions.deleteEmployeeFailure({
-                error: error?.message ?? APP_MESSAGES.employee.loadFailed,
+                error: errorMessage(error, APP_MESSAGES.employee.loadFailed),
               }),
             ),
           ),

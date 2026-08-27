@@ -69,7 +69,7 @@ describe('EmployeeEffects', () => {
 
     const action = await firstValueFrom(effects.loadEmployees$);
     expect(action.type).toBe(EmployeeActions.loadEmployeesFailure.type);
-    expect((action as any).error).toContain('500 Server Error');
+    expect((action as any).error).toBe('Failed to load employees.');
   });
 
   it('should dispatch searchEmployeeByIdFailure on 404', async () => {
@@ -80,7 +80,7 @@ describe('EmployeeEffects', () => {
 
     const action = await firstValueFrom(effects.searchEmployeeById$);
     expect(action.type).toBe(EmployeeActions.searchEmployeeByIdFailure.type);
-    expect((action as any).error).toContain('404 Not Found');
+    expect((action as any).error).toBe('Failed to load employees.');
   });
 
   it('should dispatch addEmployeeSuccess when creation succeeds', async () => {

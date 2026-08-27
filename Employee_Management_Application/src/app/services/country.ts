@@ -1,10 +1,10 @@
 import { inject, Service } from '@angular/core';
 import { HttpService } from './http-service';
-import { firstValueFrom } from 'rxjs';
 import { ENDPOINTS } from '../constants/endpoints';
 import { environment } from '../../environments/environment';
 import { Country as CountryModel } from '../interface/country.interface';
 import { APP_MESSAGES } from '../constants';
+import { request } from '../helpers/api-error';
 
 @Service()
 export class Country {
@@ -17,16 +17,9 @@ export class Country {
    * @throws The API error when the request fails.
    */
   async getCountries(): Promise<CountryModel[]> {
-    try {
-      const response = await firstValueFrom(
-        this.http.get<CountryModel[]>(`${environment.apiBaseUrl}${ENDPOINTS.country}`),
-      );
-
-      return response;
-    } catch (error) {
-      // Convert unknown HTTP errors into a message the UI can safely display.
-      const message = error instanceof Error ? error.message : 'Country API request failed.';
-      throw new Error(`${APP_MESSAGES.country.loadFailed}: ${message}`);
-    }
+    return request(
+      this.http.get<CountryModel[]>(`${environment.apiBaseUrl}${ENDPOINTS.country}`),
+      APP_MESSAGES.country.loadFailed,
+    );
   }
 }

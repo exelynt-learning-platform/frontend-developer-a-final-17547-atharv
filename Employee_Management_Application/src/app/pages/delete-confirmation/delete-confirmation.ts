@@ -25,6 +25,8 @@ export class DeleteConfirmationComponent implements AfterViewInit {
 
   /** Creates and opens the Bootstrap modal after its element is available. */
   ngAfterViewInit(): void {
+    if (!this.deleteModalElement?.nativeElement?.isConnected) return;
+
     this.modalInstance = new Modal(this.deleteModalElement.nativeElement, {
       backdrop: 'static',
       keyboard: false,

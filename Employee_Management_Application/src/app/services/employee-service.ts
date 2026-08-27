@@ -1,8 +1,9 @@
 import { inject, Service } from '@angular/core';
 import { HttpService } from './http-service';
 import { environment } from '../../environments/environment';
-import { firstValueFrom } from 'rxjs';
 import { ENDPOINTS } from '../constants/endpoints';
+import { APP_MESSAGES } from '../constants/messages';
+import { request } from '../helpers/api-error';
 import { Employee } from '../interface/employee.interface';
 
 @Service()
@@ -15,8 +16,9 @@ export class EmployeeService {
    * @returns Promise containing the employee collection.
    */
   async getAllEmployee(): Promise<Employee[]> {
-    return firstValueFrom(
+    return request(
       this.http.get<Employee[]>(`${environment.apiBaseUrl}${ENDPOINTS.employee}`),
+      APP_MESSAGES.employee.loadFailed,
     );
   }
 
@@ -27,8 +29,9 @@ export class EmployeeService {
    * @returns Promise containing the requested employee.
    */
   async getEmployeeById(id: string): Promise<Employee> {
-    return firstValueFrom(
+    return request(
       this.http.get<Employee>(`${environment.apiBaseUrl}${ENDPOINTS.employee}/${id}`),
+      APP_MESSAGES.employee.loadFailed,
     );
   }
 
@@ -39,8 +42,9 @@ export class EmployeeService {
    * @returns Promise containing the newly created employee.
    */
   async createEmployee(employee: Omit<Employee, 'id'>): Promise<Employee> {
-    return firstValueFrom(
+    return request(
       this.http.post<Employee>(`${environment.apiBaseUrl}${ENDPOINTS.employee}`, employee),
+      APP_MESSAGES.employee.loadFailed,
     );
   }
 
@@ -52,8 +56,9 @@ export class EmployeeService {
    * @returns Promise containing the updated employee.
    */
   async updateEmployee(id: string, employee: Employee): Promise<Employee> {
-    return firstValueFrom(
+    return request(
       this.http.put<Employee>(`${environment.apiBaseUrl}${ENDPOINTS.employee}/${id}`, employee),
+      APP_MESSAGES.employee.loadFailed,
     );
   }
 
@@ -64,6 +69,9 @@ export class EmployeeService {
    * @returns Promise that resolves when deletion succeeds.
    */
   async deleteEmployee(id: string): Promise<void> {
-    await firstValueFrom(this.http.delete(`${environment.apiBaseUrl}${ENDPOINTS.employee}/${id}`));
+    await request(
+      this.http.delete(`${environment.apiBaseUrl}${ENDPOINTS.employee}/${id}`),
+      APP_MESSAGES.employee.loadFailed,
+    );
   }
 }
