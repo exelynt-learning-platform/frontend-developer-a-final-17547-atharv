@@ -38,7 +38,7 @@ export class EmployeeService {
    * @param employee Employee data to create.
    * @returns Promise containing the newly created employee.
    */
-  async createEmployee(employee: Employee): Promise<Employee> {
+  async createEmployee(employee: Omit<Employee, 'id'>): Promise<Employee> {
     return firstValueFrom(
       this.http.post<Employee>(`${environment.apiBaseUrl}${ENDPOINTS.employee}`, employee),
     );

@@ -20,7 +20,7 @@ export const EmployeeActions = createActionGroup({
     'Clear Search': emptyProps(),
 
     /** Create */
-    'Add Employee': props<{ payload: Employee }>(),
+    'Add Employee': props<{ payload: Omit<Employee, 'id'> }>(),
     'Add Employee Success': props<{ employee: Employee }>(),
     'Add Employee Failure': props<{ error: string }>(),
 

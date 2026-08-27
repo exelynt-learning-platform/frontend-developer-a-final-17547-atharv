@@ -146,12 +146,16 @@ export class DashboardComponent implements OnInit {
       ...formData,
       country: selectedCountry?.country ?? '',
       countryId: formData.countryId,
-      id: this.editingId ?? '',
       avatar: '',
       emailId: formData.email,
     };
     if (this.editingId) {
-      this.store.dispatch(EmployeeActions.updateEmployee({ id: this.editingId, payload }));
+      this.store.dispatch(
+        EmployeeActions.updateEmployee({
+          id: this.editingId,
+          payload: { ...payload, id: this.editingId },
+        }),
+      );
     } else {
       this.store.dispatch(EmployeeActions.addEmployee({ payload }));
     }
