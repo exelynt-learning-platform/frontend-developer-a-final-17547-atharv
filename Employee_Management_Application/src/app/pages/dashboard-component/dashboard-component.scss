@@ -1,0 +1,135 @@
+.page-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  color: #17221c;
+}
+.page-header,
+.section-heading,
+.search-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.page-header {
+  margin-bottom: 32px;
+}
+.eyebrow {
+  margin: 0 0 8px;
+  color: #b34b2e;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 0;
+  font:
+    700 clamp(32px, 5vw, 56px)/1.05 Georgia,
+    serif;
+}
+h2 {
+  margin: 0;
+  font-size: 20px;
+}
+.subtitle {
+  color: #657169;
+}
+.toolbar {
+  margin-bottom: 24px;
+  border: 1px solid #dce5df;
+  border-radius: 8px;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 8px 24px #1d38200d;
+}
+label {
+  display: grid;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+}
+input,
+select {
+  min-height: 42px;
+  box-sizing: border-box;
+  border: 1px solid #bccbc0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font: inherit;
+  font-weight: 400;
+}
+button {
+  min-height: 40px;
+  border: 0;
+  border-radius: 4px;
+  padding: 0 16px;
+  cursor: pointer;
+  font-weight: 700;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+.primary {
+  background: #b34b2e;
+  color: #fff;
+}
+.secondary {
+  background: #214d38;
+  color: #fff;
+}
+.link-button {
+  background: transparent;
+  color: #214d38;
+  padding: 4px 8px;
+}
+.danger {
+  background: transparent;
+  color: #a63024;
+  padding: 4px 8px;
+}
+.search-row {
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+.search-row input {
+  width: 220px;
+}
+.status,
+.empty,
+.result,
+.error {
+  margin: 12px 0 0;
+  color: #657169;
+}
+.error {
+  color: #a63024;
+}
+.result {
+  color: #214d38;
+}
+.page-message {
+  margin-bottom: 24px;
+}
+@media (max-width: 700px) {
+  .page-shell {
+    padding: 28px 16px;
+  }
+  .page-header,
+  .search-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .page-header .primary,
+  .search-row button {
+    width: 100%;
+  }
+  .search-row input {
+    width: 100%;
+  }
+  .toolbar {
+    padding: 18px 14px;
+  }
+}

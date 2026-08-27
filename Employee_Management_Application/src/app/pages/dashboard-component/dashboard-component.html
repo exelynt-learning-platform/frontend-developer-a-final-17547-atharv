@@ -1,0 +1,58 @@
+<app-loader [loader]="isBusy" />
+<main class="page-shell">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">People operations</p>
+      <h1>Employee directory</h1>
+      <p class="subtitle">Manage your team details in one place.</p>
+    </div>
+    <button class="primary" type="button" (click)="onAddEmployee()">Add employee</button>
+  </header>
+  <section class="toolbar" aria-label="Search employees">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+      <label for="search-id">Find by employee ID</label>
+      <div class="search-row">
+        <input id="search-id" formControlName="id" placeholder="ID, name, email or country" />
+        <button class="secondary" type="submit">Search</button>
+        <button class="link-button" type="button" (click)="onClearSearch()">Clear</button>
+      </div>
+    </form>
+    @if (searchTerm && filteredEmployees.length === 0) {
+      <p class="error">No employee found.</p>
+    }
+  </section>
+  @if (error()) {
+    <p class="error page-message">{{ error() }}</p>
+  }
+  @if (isLoading()) {
+    <p class="status page-message">Loading employees...</p>
+  }
+  @if (showForm) {
+    <app-form-component
+      [employee]="selectedEmployee"
+      [countries]="countries()"
+      [countriesLoading]="countriesLoading()"
+      [countriesError]="countriesError()"
+      [isSubmitting]="formSubmitting()"
+      (save)="onSubmit($event)"
+      (close)="onCloseForm()"
+    />
+  }
+  @if (showDeleteConfirmation && selectedEmployee) {
+    <app-delete-confirmation
+      [employee]="selectedEmployee"
+      (confirm)="onConfirmDelete()"
+      (close)="onCloseDelete()"
+    />
+  }
+  <app-table-component
+    [employees]="pagedEmployees"
+    [employeeCount]="filteredEmployees.length"
+    [deletingId]="deletingId()"
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+    (pageChange)="onPageChange($event)"
+  />
+</main>

@@ -1,0 +1,77 @@
+<section class="table-panel">
+  <div class="section-heading">
+    <h2>All employees</h2>
+    <span class="count">{{ employeeCount }}</span>
+  </div>
+  @if (employees.length === 0) {
+    <p class="empty">No employees to display.</p>
+  } @else {
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Profile</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Country</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (employee of employees; track employee.id) {
+            <tr>
+              <td>
+                <img
+                  [src]="employee.avatar"
+                  [alt]="employee.name"
+                  class="employee-avatar"
+                  width="60"
+                  height="60"
+                />
+              </td>
+              <td>
+                {{ employee.name }} <small class="employee-id">ID: {{ employee.id }}</small>
+              </td>
+              <td>{{ employee.email || employee.emailId }}</td>
+              <td>{{ employee.mobile }}</td>
+              <td>{{ employee.country }}</td>
+              <td class="actions">
+                <button class="link-button" type="button" (click)="edit.emit(employee)">
+                  Edit
+                </button>
+                <button
+                  class="danger"
+                  type="button"
+                  [disabled]="deletingId === employee.id"
+                  (click)="delete.emit(employee)"
+                >
+                  {{ deletingId === employee.id ? 'Deleting...' : 'Delete' }}
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    @if (totalPages > 1) {
+      <nav class="pagination" aria-label="Employee pages">
+        <button
+          type="button"
+          [disabled]="currentPage === 1"
+          (click)="pageChange.emit(currentPage - 1)"
+        >
+          Previous
+        </button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button
+          type="button"
+          [disabled]="currentPage === totalPages"
+          (click)="pageChange.emit(currentPage + 1)"
+        >
+          Next
+        </button>
+      </nav>
+    }
+  }
+</section>

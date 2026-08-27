@@ -1,0 +1,25 @@
+<div
+  #deleteModal
+  class="modal fade"
+  tabindex="-1"
+  aria-labelledby="deleteModalTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <section class="modal-content" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <h2 id="deleteModalTitle">Delete employee?</h2>
+        <button class="btn-close" type="button" aria-label="Close" (click)="onClose()">
+          close
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This will permanently delete {{ employee?.name }}.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="secondary" type="button" (click)="onClose()">Cancel</button>
+        <button class="danger-button" type="button" (click)="onConfirm()">Delete</button>
+      </div>
+    </section>
+  </div>
+</div>

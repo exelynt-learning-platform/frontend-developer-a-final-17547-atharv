@@ -1,0 +1,110 @@
+.section-heading,
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-heading {
+  justify-content: space-between;
+}
+h2 {
+  margin: 0;
+  font-size: 20px;
+}
+.table-panel {
+  margin-bottom: 24px;
+  border: 1px solid #dce5df;
+  border-radius: 8px;
+  background: #fff;
+  padding: 24px;
+  box-shadow: 0 8px 24px #1d38200d;
+}
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 18px;
+}
+table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 14px 10px;
+  border-bottom: 1px solid #e7eee9;
+  text-align: left;
+}
+th {
+  color: #657169;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.actions {
+  white-space: nowrap;
+}
+.employee-id {
+  display: block;
+  color: #657169;
+  font-size: 11px;
+}
+.count {
+  display: grid;
+  place-items: center;
+  min-width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e8f0ea;
+  color: #214d38;
+}
+.empty {
+  margin: 12px 0 0;
+  color: #657169;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+.pagination button {
+  min-height: 36px;
+  border: 0;
+  border-radius: 4px;
+  padding: 0 12px;
+  background: #e8f0ea;
+  color: #214d38;
+  cursor: pointer;
+  font-weight: 700;
+}
+.link-button,
+.danger {
+  border: 0;
+  background: transparent;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.link-button {
+  color: #214d38;
+}
+.danger {
+  color: #a63024;
+}
+button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+@media (max-width: 700px) {
+  .table-panel {
+    padding: 18px 14px;
+  }
+  .employee-avatar {
+    width: 42px;
+    height: 42px;
+  }
+  .table-wrap {
+    margin-inline: -14px;
+    padding-inline: 14px;
+  }
+}

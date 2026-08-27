@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+/* Global styles.
+ * Bootstrap supplies layout/grid/spacing utilities; Angular Material
+ * supplies interactive controls (see angular.json for the Material
+ * prebuilt theme import). The two are not mixed on the same control. */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Trebuchet MS', sans-serif;
+  background: #f4f7f3;
+}
